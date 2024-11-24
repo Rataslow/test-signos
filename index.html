@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Signos Zodiacales</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1f0631, #1893a3);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            background-color: rgba(5, 5, 7, 0.1);
+            border-radius: 10px;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 10px;
+            border-bottom: 1px solid rgb(48, 3, 52);
+        }
+        .options button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #07bb2eb3;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .options button:hover {
+            background-color: #4da352;
+        }
+        #progress-container {
+            width: 100%;
+            padding: 10px 0;
+        }
+        progress {
+            width: 100%;
+            height: 20px;
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+        }
+        progress::-webkit-progress-bar {
+            background-color: #f3f3f3;
+            border-radius: 10px;
+        }
+        progress::-webkit-progress-value {
+            background-color: #4caf50;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Test de Signos Zodiacales</h1>
+        <div class="intro">
+            <p>Este test es solo para entretención</p>
+            <p><strong>Creado por Rataslow.</strong></p>
+        </div>
+        <div id="progress-container">
+            <progress id="progress-bar" value="0" max="100"></progress>
+        </div>
+        <div id="quiz">
+            <div class="question" data-question="1">
+                <p>¿Te consideras una persona apasionada y energética?</p>
+                <div class="options">
+                    <button onclick="nextQuestion('Aries')">Sí</button>
+                    <button onclick="nextQuestion('Leo')">A veces</button>
+                    <button onclick="nextQuestion('Libra')">No</button>
+                </div>
+            </div>
+            
+<div class="question" data-question="2" style="display: none;">
+    <p>¿Prefieres actividades relacionadas con la naturaleza?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Tauro')">Sí</button>
+        <button onclick="nextQuestion('Virgo')">A veces</button>
+        <button onclick="nextQuestion('Acuario')">No</button>
+    </div>
+</div>
+<div class="question" data-question="3" style="display: none;">
+    <p>¿Eres conocido por tu creatividad y visión única?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Acuario')">Sí</button>
+        <button onclick="nextQuestion('Piscis')">A veces</button>
+        <button onclick="nextQuestion('Capricornio')">No</button>
+    </div>
+</div>
+<div class="question" data-question="4" style="display: none;">
+    <p>¿Te sientes atraído por liderar y tomar la iniciativa?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Leo')">Sí</button>
+        <button onclick="nextQuestion('Aries')">A veces</button>
+        <button onclick="nextQuestion('Cáncer')">No</button>
+    </div>
+</div>
+<div class="question" data-question="5" style="display: none;">
+    <p>¿Disfrutas de actividades estructuradas y organizadas?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Virgo')">Sí</button>
+        <button onclick="nextQuestion('Capricornio')">A veces</button>
+        <button onclick="nextQuestion('Sagitario')">No</button>
+    </div>
+</div>
+<div class="question" data-question="6" style="display: none;">
+    <p>¿Te identificas como alguien emocionalmente sensible y protector?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Cáncer')">Sí</button>
+        <button onclick="nextQuestion('Piscis')">A veces</button>
+        <button onclick="nextQuestion('Escorpio')">No</button>
+    </div>
+</div>
+<div class="question" data-question="7" style="display: none;">
+    <p>¿Sueles buscar aventuras y nuevas experiencias?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Sagitario')">Sí</button>
+        <button onclick="nextQuestion('Aries')">A veces</button>
+        <button onclick="nextQuestion('Tauro')">No</button>
+    </div>
+</div>
+<div class="question" data-question="8" style="display: none;">
+    <p>¿Te consideras una persona leal y perseverante?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Tauro')">Sí</button>
+        <button onclick="nextQuestion('Cáncer')">A veces</button>
+        <button onclick="nextQuestion('Géminis')">No</button>
+    </div>
+</div>
+<div class="question" data-question="9" style="display: none;">
+    <p>¿Te gusta analizar y profundizar en los misterios de la vida?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Escorpio')">Sí</button>
+        <button onclick="nextQuestion('Capricornio')">A veces</button>
+        <button onclick="nextQuestion('Leo')">No</button>
+    </div>
+</div>
+<div class="question" data-question="10" style="display: none;">
+    <p>¿Te resulta fácil adaptarte a nuevas situaciones?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Géminis')">Sí</button>
+        <button onclick="nextQuestion('Libra')">A veces</button>
+        <button onclick="nextQuestion('Virgo')">No</button>
+    </div>
+</div>
+<div class="question" data-question="11" style="display: none;">
+    <p>¿Disfrutas de entablar relaciones sociales y equilibrar situaciones?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Libra')">Sí</button>
+        <button onclick="nextQuestion('Acuario')">A veces</button>
+        <button onclick="nextQuestion('Escorpio')">No</button>
+    </div>
+</div>
+<div class="question" data-question="12" style="display: none;">
+    <p>¿Te consideras ambicioso y orientado hacia tus metas?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Capricornio')">Sí</button>
+        <button onclick="nextQuestion('Leo')">A veces</button>
+        <button onclick="nextQuestion('Piscis')">No</button>
+    </div>
+</div>
+<div class="question" data-question="13"style="display: none;">
+    <p>¿Te consideras una persona práctica y detallista?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Virgo')">Sí</button>
+        <button onclick="nextQuestion('Tauro')">A veces</button>
+        <button onclick="nextQuestion('Sagitario')">No</button>
+    </div>
+</div>
+<div class="question" data-question="14" style="display: none;">
+    <p>¿Sueles tener una actitud optimista y alegre?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Sagitario')">Sí</button>
+        <button onclick="nextQuestion('Leo')">A veces</button>
+        <button onclick="nextQuestion('Capricornio')">No</button>
+    </div>
+</div>
+<div class="question" data-question="15" style="display: none;">
+    <p>¿Te gusta sentirte seguro y protegido en tu entorno?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Tauro')">Sí</button>
+        <button onclick="nextQuestion('Cáncer')">A veces</button>
+        <button onclick="nextQuestion('Acuario')">No</button>
+    </div>
+</div>
+<div class="question" data-question="16" style="display: none;">
+    <p>¿Te consideras una persona independiente y autosuficiente?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Acuario')">Sí</button>
+        <button onclick="nextQuestion('Aries')">A veces</button>
+        <button onclick="nextQuestion('Piscis')">No</button>
+    </div>
+</div>
+<div class="question" data-question="17" style="display: none;">
+    <p>¿Te atraen los desafíos intelectuales y la resolución de problemas?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Géminis')">Sí</button>
+        <button onclick="nextQuestion('Libra')">A veces</button>
+        <button onclick="nextQuestion('Escorpio')">No</button>
+    </div>
+</div>
+<div class="question" data-question="18" style="display: none;">
+    <p>¿Te resulta fácil ser empático y conectarte emocionalmente con los demás?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Piscis')">Sí</button>
+        <button onclick="nextQuestion('Cáncer')">A veces</button>
+        <button onclick="nextQuestion('Leo')">No</button>
+    </div>
+</div>
+<div class="question" data-question="19" style="display: none;">
+    <p>¿Te consideras una persona organizada y disciplinada?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Capricornio')">Sí</button>
+        <button onclick="nextQuestion('Virgo')">A veces</button>
+        <button onclick="nextQuestion('Géminis')">No</button>
+    </div>
+</div>
+<div class="question" data-question="20" style="display: none;">
+    <p>¿Disfrutas de estar rodeado de personas y participar en actividades grupales?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Leo')">Sí</button>
+        <button onclick="nextQuestion('Libra')">A veces</button>
+        <button onclick="nextQuestion('Escorpio')">No</button>
+    </div>
+</div>
+<div class="question" data-question="21" style="display: none;">
+    <p>¿Te gusta analizar y estudiar temas profundos y complejos?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Escorpio')">Sí</button>
+        <button onclick="nextQuestion('Acuario')">A veces</button>
+        <button onclick="nextQuestion('Sagitario')">No</button>
+    </div>
+</div>
+<div class="question" data-question="22" style="display: none;">
+    <p>¿Te resulta fácil mantener la calma en situaciones difíciles?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Tauro')">Sí</button>
+        <button onclick="nextQuestion('Capricornio')">A veces</button>
+        <button onclick="nextQuestion('Aries')">No</button>
+    </div>
+</div>
+<div class="question" data-question="23" style="display: none;">
+    <p>¿Sueles ser idealista y buscar un propósito mayor en la vida?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Piscis')">Sí</button>
+        <button onclick="nextQuestion('Sagitario')">A veces</button>
+        <button onclick="nextQuestion('Leo')">No</button>
+    </div>
+</div>
+<div class="question" data-question="24" style="display: none;">
+    <p>¿Eres una persona que se adapta fácilmente a los cambios y nuevos ambientes?</p>
+    <div class="options">
+        <button onclick="nextQuestion('Géminis')">Sí</button>
+        <button onclick="nextQuestion('Libra')">A veces</button>
+        <button onclick="nextQuestion('Capricornio')">No</button>
+    </div>
+</div>
+            <!-- Más preguntas relacionadas con signos -->
+            <!-- Finalizar -->
+        </div>
+    </div>
+
+    <script>
+        const scores = {
+            Aries: 0, Tauro: 0, Géminis: 0, Cáncer: 0, Leo: 0, Virgo: 0,
+            Libra: 0, Escorpio: 0, Sagitario: 0, Capricornio: 0, Acuario: 0, Piscis: 0
+        };
+        let currentQuestion = 1;
+        const totalQuestions = 24;
+
+        function nextQuestion(sign) {
+            scores[sign]++;
+            const currentElement = document.querySelector(`.question[data-question="${currentQuestion}"]`);
+            if (currentElement) currentElement.style.display = 'none';
+
+            currentQuestion++;
+            const nextElement = document.querySelector(`.question[data-question="${currentQuestion}"]`);
+            if (nextElement) {
+                nextElement.style.display = 'block';
+                updateProgress();
+            } else {
+                generatePDF();
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progress-bar').value = progress;
+        }
+
+        function generatePDF() {
+    // Ordenar los signos por puntuación
+    const sortedSigns = Object.entries(scores)
+        .sort((a, b) => b[1] - a[1])
+        .map(entry => entry[0]);
+
+    // Los tres signos más representativos
+    const dominantSign = sortedSigns[0];
+    const secondarySigns = sortedSigns.slice(1, 3);
+
+    // Consejos personalizados
+    const advice = {
+        Aries: 
+       `En el amor, tu pasión y determinación te impulsan a dar lo mejor de ti, pero recuerda no ser tan impulsivo. 
+        En la salud, tu energía es inmensa, pero a veces puedes sobrecargarte, busca equilibrio. 
+        En el dinero, tu ambición es grande, pero asegúrate de planificar antes de actuar. 
+        La fe en ti mismo es crucial, pero aprende a confiar en los demás también. 
+        En la familia, tu liderazgo es fuerte, pero respeta los sentimientos de los demás. 
+        Los bienes materiales no son tu prioridad, pero es importante no descuidarlos. 
+        El futuro está lleno de posibilidades, pero tu mayor reto será la paciencia y la toma de decisiones reflexivas.`,
+
+        Tauro: 
+       `En el amor, eres leal y protector, pero a veces puedes ser posesivo, aprende a dar espacio. 
+        En la salud, tu tendencia a la constancia te beneficia, pero evita los excesos. 
+        En el dinero, tu sensatez te lleva lejos, pero no te aferres demasiado a la seguridad material, aprende a disfrutar el presente. 
+        La fe en lo tangible es fuerte en ti, pero recuerda abrir tu mente a lo intangible. 
+        En la familia, eres un pilar, pero asegúrate de expresar tus emociones más. 
+        Los bienes materiales son muy importantes, pero no te olvides de lo emocional. 
+        En el futuro, tendrás éxito si sigues trabajando con paciencia y persistencia.`,
+        // El resto de los signos va aquí...
+        Géminis: 
+       `En el amor, tu naturaleza comunicativa te hace un gran compañero, pero a veces tu inconstancia puede generar dudas. 
+        En la salud, tu adaptabilidad te ayuda a mantenerte activo, pero es importante que encuentres momentos de calma. 
+        En el dinero, eres creativo, pero necesitas aprender a enfocarte para lograr tus metas. 
+        La fe en el cambio es tu fortaleza, pero también debes aprender a ser más estable. 
+        En la familia, tu flexibilidad es clave, pero recuerda ser más constante en tus compromisos. 
+        Los bienes materiales no son lo más importante para ti, pero te beneficiarás de establecer prioridades. 
+        El futuro está lleno de oportunidades si aprendes a equilibrar la acción y la reflexión.`,
+
+        Cáncer: 
+       `En el amor, eres un compañero profundamente emocional y protector, pero evita la dependencia emocional. 
+        En la salud, tu bienestar emocional es esencial, busca equilibrar cuerpo y mente. 
+        En el dinero, tu intuición te guía, pero a veces es importante ser más práctico. 
+        La fe en la familia y lo que amas es una base sólida, pero también debes aprender a soltar cuando sea necesario. 
+        En la familia, eres un gran cuidador, pero asegúrate de cuidar también de ti mismo. 
+        Los bienes materiales no son tu prioridad, pero te sentirás más seguro al tener una base estable. 
+        En el futuro, tu capacidad de adaptarte te llevará lejos, pero también necesitarás soltar el control de vez en cuando.`,
+
+        Leo: 
+       `En el amor, tu generosidad y pasión son tus grandes virtudes, pero no olvides escuchar a tu pareja. 
+        En la salud, tu energía es ilimitada, pero no dejes que el estrés te afecte. 
+        En el dinero, tu creatividad puede ser tu mayor recurso, pero asegúrate de tener un plan sólido. 
+        La fe en ti mismo es tu mayor fortaleza, pero no tengas miedo de pedir ayuda cuando la necesites. 
+        En la familia, eres el líder natural, pero recuerda ser más comprensivo. 
+        Los bienes materiales son importantes, pero tu verdadera riqueza radica en lo que puedes compartir. 
+        El futuro es brillante si te enfocas en lo que realmente importa y no en lo que te distrae.`,
+
+        Virgo: 
+       `En el amor, eres un compañero confiable y analítico, pero aprende a ser más espontáneo. 
+        En la salud, tu disciplina te ayuda a mantenerte en forma, pero no te sobrecargues de preocupaciones. 
+        En el dinero, eres prudente, pero asegúrate de no quedarte estancado en la seguridad. 
+        La fe en la organización te da fuerza, pero también es importante permitirte ser flexible. 
+        En la familia, tu apoyo incondicional es valioso, pero no dejes que las pequeñas críticas afecten tus relaciones. 
+        Los bienes materiales te dan seguridad, pero recuerda que el verdadero bienestar viene del equilibrio interno. 
+        En el futuro, tu planificación meticulosa te llevará al éxito, pero también necesitarás ser más adaptable a los cambios.`,
+
+        Libra: 
+       `En el amor, tu necesidad de equilibrio y armonía te convierte en un gran compañero, pero evita la indecisión. 
+        En la salud, tu enfoque equilibrado te ayuda a mantener el bienestar, pero recuerda cuidar tus emociones. 
+        En el dinero, tu capacidad para negociar es clave, pero debes aprender a ser más decidido. 
+        La fe en la justicia te da fuerza, pero no siempre puedes complacer a todos. 
+        En la familia, tu deseo de paz es un regalo, pero recuerda poner límites cuando sea necesario. 
+        Los bienes materiales son importantes, pero tu felicidad depende de las relaciones y el bienestar emocional. 
+        En el futuro, tu habilidad para mediar te llevará a nuevas oportunidades, pero también debes aprender a ser más firme cuando lo necesites.`,
+
+        Escorpio: 
+       `En el amor, tu intensidad emocional puede ser abrumadora, pero cuando eres sincero, eres un compañero increíble. 
+        En la salud, tu pasión te lleva a la acción, pero asegúrate de cuidar tu bienestar físico. 
+        En el dinero, tu enfoque estratégico te permite prosperar, pero no seas tan obsesivo con el control. 
+        La fe en ti mismo es tu fuerza, pero también necesitas aprender a confiar en los demás. 
+        En la familia, eres protector, pero a veces puedes ser demasiado celoso, aprende a dar espacio. 
+        Los bienes materiales son importantes para ti, pero el verdadero valor está en las relaciones y el crecimiento personal. 
+        El futuro es brillante si logras equilibrar tu necesidad de control con la flexibilidad.`,
+
+        Sagitario: 
+       `En el amor, tu optimismo y amor por la aventura te convierten en un compañero divertido, pero no dejes que tu necesidad de libertad te haga distante. 
+        En la salud, tu energía es inagotable, pero a veces necesitas tomar un descanso. 
+        En el dinero, tu visión expansiva te permite alcanzar el éxito, pero debes ser más cauteloso con los riesgos. 
+        La fe en la aventura te impulsa a crecer, pero también debes aprender a estar presente. 
+        En la familia, tu entusiasmo es contagioso, pero asegúrate de escuchar las necesidades de los demás. 
+        Los bienes materiales son secundarios para ti, pero puedes encontrar estabilidad si priorizas un equilibrio. 
+        En el futuro, tu capacidad para ver más allá de los obstáculos te llevará a nuevas oportunidades, pero necesitarás ser más paciente en tu viaje.`,
+
+        Capricornio: 
+       `En el amor, tu lealtad y determinación te hacen un compañero firme, pero a veces puedes ser demasiado serio. 
+        En la salud, tu disciplina es admirable, pero recuerda relajarte. 
+        En el dinero, tu capacidad de trabajo duro te lleva al éxito, pero no te olvides de disfrutar el proceso. 
+        La fe en el trabajo y la responsabilidad es tu fuerza, pero también debes aprender a confiar en el flujo de la vida. 
+        En la familia, eres un pilar, pero asegúrate de mostrar tu lado más cálido. 
+        Los bienes materiales son importantes para ti, pero recuerda que la verdadera riqueza radica en las relaciones humanas. 
+        En el futuro, tu perseverancia te llevará lejos, pero también necesitarás flexibilidad para enfrentar los cambios.`,
+
+        Acuario: 
+       `En el amor, tu independencia y mente abierta te hacen un compañero único, pero a veces te cuesta comprometerte. 
+        En la salud, tu necesidad de libertad te impulsa a cuidar tu bienestar, pero asegúrate de conectar también con tu cuerpo. 
+        En el dinero, tu innovación te lleva a nuevas oportunidades, pero debes trabajar en la estabilidad a largo plazo. 
+        La fe en el cambio es tu fuerza, pero también necesitas aprender a valorar la constancia. 
+        En la familia, eres un buen amigo y apoyo, pero recuerda dar espacio a los demás. 
+        Los bienes materiales no te preocupan mucho, pero puedes encontrar satisfacción en lo que compartes con los demás. 
+        El futuro está lleno de innovación, pero también necesitas mantenerte anclado en el presente.`,
+
+        Piscis: 
+       `En el amor, eres un compañero muy sensible y empático, pero a veces tu idealismo puede ser un desafío. 
+        En la salud, tu bienestar emocional es fundamental, pero también necesitas cuidar de tu cuerpo físico. 
+        En el dinero, tu creatividad te da ideas innovadoras, pero debes trabajar en la disciplina financiera. 
+        La fe en lo espiritual es fuerte en ti, pero también necesitas ser práctico con los asuntos materiales. 
+        En la familia, eres el alma compasiva, pero asegúrate de cuidar tu propio bienestar. 
+        Los bienes materiales no son tu prioridad, pero la estabilidad emocional te dará la paz que necesitas. 
+        El futuro es brillante si logras equilibrar tus sueños con la acción práctica.`
+
+    };
+
+   // Crear el documento PDF
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+// Ajustar texto a los márgenes
+const margin = 20;
+const pageHeight = doc.internal.pageSize.height;
+let yOffset = 20;
+
+// Título
+const title = `Tu signo zodiacal más parecido: ${dominantSign}`;
+doc.setFontSize(18);
+doc.setFont('times', 'bold');
+doc.text(title, margin, yOffset);
+yOffset += 15;
+
+// Los signos secundarios
+const secondarySignsText = `Otros signos que también te representan: ${secondarySigns.join(', ')}`;
+doc.setFontSize(12);
+doc.setFont('times', 'normal');
+const secondarySignsLines = doc.splitTextToSize(secondarySignsText, 180);
+doc.text(secondarySignsLines, margin, yOffset);
+yOffset += secondarySignsLines.length * 5 + 1; // Reducido el espacio entre consejos
+
+// Consejos para el signo dominante
+const dominantSignAdvice = advice[dominantSign] || 'Consejo no disponible';
+doc.setFontSize(14);
+doc.setFont('times', 'bold');
+doc.text(`Consejos para ${dominantSign}:`, margin, yOffset);
+yOffset += 5; // Espacio reducido entre título y consejo
+const dominantSignAdviceLines = doc.splitTextToSize(dominantSignAdvice, 180);
+doc.setFontSize(12);
+doc.setFont('times', 'normal');
+doc.text(dominantSignAdviceLines, margin, yOffset);
+yOffset += dominantSignAdviceLines.length * 5 + 1; // Espacio reducido entre consejos
+
+// Consejos para los signos secundarios
+secondarySigns.forEach(sign => {
+    const signAdvice = advice[sign] || 'Consejo no disponible';
+    doc.setFontSize(14);
+    doc.setFont('times', 'bold');
+    doc.text(`Consejos para ${sign}:`, margin, yOffset);
+    yOffset += 5; // Espacio reducido entre título y consejo
+    const signAdviceLines = doc.splitTextToSize(signAdvice, 180);
+    doc.setFontSize(12);
+    doc.setFont('times', 'normal');
+    doc.text(signAdviceLines, margin, yOffset);
+    yOffset += signAdviceLines.length * 5 + 1; // Espacio reducido entre consejos
+});
+
+// Guardar el documento como PDF
+doc.save('resultado_test_signos.pdf');
+
+}
+    </script>
+</body>
+</html>
